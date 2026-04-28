@@ -100,18 +100,18 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Помогаем подросткам найти свою связь с традицией "
         "и культурой еврейского народа 🕍\n\n"
         "Мы проводим:\n"
-        "• Образовательные встречи\n"
-        "• Культурные мероприятия\n"
-        "• Творческие мастерские\n"
-        "• Праздники по еврейскому календарю"
+        "• Образовательные занятия\n"
+        "• Фан-встречи\n"
+        "• Шаббатоны\n"
+        "• Еврейские праздники"
     )
 
 
 async def contact(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "Связаться с нами:\n\n"
-        "📱 Telegram: @enerjew_moscow\n"
-        "📸 Instagram: @enerjew_moscow"
+        "📱 Telegram: https://t.me/enerjewmoscow\n"
+        "📸 Instagram: @enerjewmsc"
     )
 
 
@@ -177,7 +177,6 @@ async def quick_register(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"✅ Готово, {user['name']}!\n\n"
             f"Ты записан(а) на:\n"
             f"🗓 {date} — {event}\n\n"
-            f"Мы свяжемся с тобой ближе к дате. Шалом! 🌟"
         )
     except Exception as e:
         await query.edit_message_text("Что-то пошло не так 😔 Напиши нам: @enerjew_moscow")
