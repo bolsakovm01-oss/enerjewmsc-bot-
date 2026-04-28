@@ -1,4 +1,5 @@
 import logging
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
@@ -14,7 +15,15 @@ ADMIN_ID = 1018190689
 SHEET_ID = "1F1Ae-f739jSpQx2ehX1h4UZg7pRSDuCxNa1tjSSDGLo"
 
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+
+google_creds_b64 = os.environ.get("GOOGLE_CREDENTIALS")
+if google_creds_b64:
+    import json, base64
+    creds_dict = json.loads(base64.b64decode(google_creds_b64).decode("utf-8"))
+    creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
+else:
+    creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+
 gc = gspread.authorize(creds)
 workbook = gc.open_by_key(SHEET_ID)
 sheet = workbook.sheet1
